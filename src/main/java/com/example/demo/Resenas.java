@@ -9,7 +9,7 @@ public class Resenas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @ManyToOne
     @JoinColumn(name = "libro_id", nullable = false)
     private Libro libro;

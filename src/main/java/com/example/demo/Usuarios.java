@@ -1,9 +1,15 @@
 package com.example.demo;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,15 +20,17 @@ public class Usuarios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
-    private String perfil;
+    private Collection<? extends GrantedAuthority> perfil;
     private String contrasena;
-
+    
+    @OneToMany(mappedBy = "usuario")
+    private List<Resenas> resenas;
     // Constructor vacío
     public Usuarios() {
     }
 
     // Constructor con parámetros
-    public Usuarios(String nombre, String perfil, String contrasena) {
+    public Usuarios(String nombre, Collection<? extends GrantedAuthority> perfil, String contrasena) {
         this.nombre = nombre;
         this.perfil = perfil;
     }
@@ -44,11 +52,11 @@ public class Usuarios {
         this.nombre = nombre;
     }
 
-    public String getPerfil() {
+    public Collection<? extends GrantedAuthority> getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(String perfil) {
+    public void setPerfil(Collection<? extends GrantedAuthority> perfil) {
         this.perfil = perfil;
     }
     public String getContrasena() {

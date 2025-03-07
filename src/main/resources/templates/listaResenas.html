@@ -7,19 +7,23 @@
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 </head>
 <body>
-	<nav>
-		       <div class="nav-container">
-		           <!-- Texto a la izquierda: Biblioteca Virtual -->
-		           <div class="logo">Biblioteca Virtual</div>
+    <nav>
+        <div class="nav-container">
+            <!-- Texto a la izquierda: Biblioteca Virtual -->
+            <div class="logo">Biblioteca Virtual</div>
 
-		           <!-- Menú de enlaces -->
-		           <ul class="links">
-		               <li><a href="/">Libros</a></li>
-		               <li><a href="/resenas">Reseñas</a></li>
-		           </ul>
-		       </div>
-		   </nav>
-		   <a href="/nuevaResena" class="button">Añadir nueva reseña</a>
+            <!-- Menú de enlaces -->
+            <ul class="links">
+                <li><a href="/">Libros</a></li>
+                <li><a href="/resenas">Reseñas</a></li>
+				<li> <a href="/logout">Cerrar sesión</a>
+            </ul>
+        </div>
+    </nav>
+
+    <a href="/nuevaResena" class="button">Añadir nueva reseña</a>
+	
+    
     <h1>Todas las Reseñas</h1>
 
     <table class="tabla-libros">
@@ -33,17 +37,16 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Iterar sobre las reseñas para mostrar los datos -->
             <tr th:each="resena : ${resenas}">
-                <td th:text="${resena.libro.titulo}"></td>
-                <td th:text="${resena.usuario.nombre}"></td>
-                <td th:text="${resena.estrellas}"></td>
-                <td th:text="${resena.reseña}"></td>
-				<td th:text="${#dates.format(resena.fecha, 'dd/MM/yyyy')}"></td>
-
+                <td th:text="${resena.libro.titulo}">Título del libro</td>
+                <td th:text="${resena.usuario.nombre}">Nombre del usuario</td>
+                <td th:text="${resena.estrellas}">Estrellas</td>
+                <td th:text="${resena.reseña}">Reseña</td>
+                <td th:text="${#dates.format(resena.fecha, 'dd/MM/yyyy')}">Fecha</td>
             </tr>
         </tbody>
     </table>
-
 
 </body>
 </html>

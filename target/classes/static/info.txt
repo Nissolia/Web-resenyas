@@ -1,0 +1,11 @@
+-- Usuario admin
+INSERT INTO usuarios (nombre, perfil, contrasena) 
+VALUES ('admin', 'ADMIN', 'admin123');
+
+-- Usuario usuario1
+INSERT INTO usuarios (nombre, perfil, contrasena) 
+VALUES ('usuario1', 'USER', 'usuario123');
+
+-- Usuario usuario2
+INSERT INTO usuarios (nombre, perfil, contrasena) 
+VALUES ('usuario2', 'USER', 'usuario456');
