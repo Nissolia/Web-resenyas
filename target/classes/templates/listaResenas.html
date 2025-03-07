@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todas las Reseñas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<nav>
+		       <div class="nav-container">
+		           <!-- Texto a la izquierda: Biblioteca Virtual -->
+		           <div class="logo">Biblioteca Virtual</div>
+
+		           <!-- Menú de enlaces -->
+		           <ul class="links">
+		               <li><a href="/">Libros</a></li>
+		               <li><a href="/resenas">Reseñas</a></li>
+		           </ul>
+		       </div>
+		   </nav>
+		   <a href="/nuevaResena" class="button">Añadir nueva reseña</a>
+    <h1>Todas las Reseñas</h1>
+
+    <table class="tabla-libros">
+        <thead>
+            <tr>
+                <th>Libro</th>
+                <th>Usuario</th>
+                <th>Estrellas</th>
+                <th>Reseña</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="resena : ${resenas}">
+                <td th:text="${resena.libro.titulo}"></td>
+                <td th:text="${resena.usuario.nombre}"></td>
+                <td th:text="${resena.estrellas}"></td>
+                <td th:text="${resena.reseña}"></td>
+				<td th:text="${#dates.format(resena.fecha, 'dd/MM/yyyy')}"></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>

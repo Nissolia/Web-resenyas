@@ -1,74 +1,85 @@
 package com.example.demo;
 
-import java.sql.Date;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
+@Entity
 public class Resenas {
-	int id;
-	int id_libro;
-	// es el id del usuario
-	int usuario;
-	int estrellas;
-	String resena;
-	Date fecha;
 
-	// contructor
-	public Resenas(int id, int id_libro, int usuario, int estrellas, String resena, Date fecha) {
-		super();
-		this.id = id;
-		this.id_libro = id_libro;
-		this.usuario = usuario;
-		this.estrellas = estrellas;
-		this.resena = resena;
-		this.fecha = fecha;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	// getters
-	public int getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "libro_id", nullable = false)
+    private Libro libro;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuarios usuario; // Aquí es donde se refiere a la clase Usuarios
 
-	public int getId_libro() {
-		return id_libro;
-	}
+    private int estrellas; // Estrellas (0-9)
+    private String resena; // Texto de la reseña
+    private LocalDateTime fecha; // Fecha de la reseña
 
-	public void setId_libro(int id_libro) {
-		this.id_libro = id_libro;
-	}
+    // Constructor vacío
+    public Resenas() {}
 
-	public int getUsuario() {
-		return usuario;
-	}
+    // Constructor con todos los campos
+    public Resenas(Libro libro, Usuarios usuario, int estrellas, String resena, LocalDateTime fecha) {
+        this.libro = libro;
+        this.usuario = usuario;
+        this.estrellas = estrellas;
+        this.resena = resena;
+        this.fecha = fecha;
+    }
 
-	public void setUsuario(int usuario) {
-		this.usuario = usuario;
-	}
+    // Getters y Setters
+    public Long getId() {
+        return id;
+    }
 
-	public int getEstrellas() {
-		return estrellas;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setEstrellas(int estrellas) {
-		this.estrellas = estrellas;
-	}
+    public Libro getLibro() {
+        return libro;
+    }
 
-	public String getResena() {
-		return resena;
-	}
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
 
-	public void setResena(String resena) {
-		this.resena = resena;
-	}
+    public Usuarios getUsuario() {
+        return usuario;
+    }
 
-	public Date getFecha() {
-		return fecha;
-	}
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+    public int getEstrellas() {
+        return estrellas;
+    }
 
+    public void setEstrellas(int estrellas) {
+        this.estrellas = estrellas;
+    }
+
+    public String getResena() {
+        return resena;
+    }
+
+    public void setResena(String resena) {
+        this.resena = resena;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 }

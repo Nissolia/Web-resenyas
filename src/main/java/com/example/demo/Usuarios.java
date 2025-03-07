@@ -1,40 +1,61 @@
 package com.example.demo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "usuarios") 
 public class Usuarios {
-	int id;
-	String nombre;
-	String perfil;
 
-// constructores
-	public Usuarios(int id, String nombre, String perfil) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.perfil = perfil;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String nombre;
+    private String perfil;
+    private String contrasena;
 
-// getter y setters
-	public int getId() {
-		return id;
-	}
+    // Constructor vacío
+    public Usuarios() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    // Constructor con parámetros
+    public Usuarios(String nombre, String perfil, String contrasena) {
+        this.nombre = nombre;
+        this.perfil = perfil;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    // Getters y Setters
+    public int getId() {
+        return id;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getPerfil() {
-		return perfil;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
+    }
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 }
