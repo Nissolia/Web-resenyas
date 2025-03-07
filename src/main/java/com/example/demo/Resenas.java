@@ -14,9 +14,7 @@ public class Resenas {
     @JoinColumn(name = "libro_id", nullable = false)
     private Libro libro;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuarios usuario; // Aquí es donde se refiere a la clase Usuarios
+  
 
     private int estrellas; // Estrellas (0-9)
     private String resena; // Texto de la reseña
@@ -26,9 +24,9 @@ public class Resenas {
     public Resenas() {}
 
     // Constructor con todos los campos
-    public Resenas(Libro libro, Usuarios usuario, int estrellas, String resena, LocalDateTime fecha) {
+    public Resenas(Libro libro, int estrellas, String resena, LocalDateTime fecha) {
         this.libro = libro;
-        this.usuario = usuario;
+   
         this.estrellas = estrellas;
         this.resena = resena;
         this.fecha = fecha;
@@ -51,13 +49,6 @@ public class Resenas {
         this.libro = libro;
     }
 
-    public Usuarios getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuarios usuario) {
-        this.usuario = usuario;
-    }
 
     public int getEstrellas() {
         return estrellas;

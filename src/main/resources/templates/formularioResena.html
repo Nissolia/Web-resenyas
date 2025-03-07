@@ -17,26 +17,28 @@
 
 	    <h1>Añadir nueva reseña</h1>
 
-	    <form action="/guardarResena" method="POST">
-	        <label for="libro">Selecciona un libro:</label>
-	        <select name="libroId" id="libro" required>
-	            <option value="">Seleccione un libro</option>
-	            <tr th:each="libro : ${libros}">
-	                <option th:value="${libro.id}" th:text="${libro.titulo}"></option>
-	            </tr>
-	        </select>
-	        <br><br>
+		<form action="/guardarResena" method="POST">
+		    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+		    <label for="libro">Selecciona un libro:</label>
+		    <select name="libroId" id="libro" required>
+		        <option value="">Seleccione un libro</option>
+		        <tr th:each="libro : ${libros}">
+		            <option th:value="${libro.id}" th:text="${libro.titulo}"></option>
+		        </tr>
+		    </select>
+		    <br><br>
 
-	        <label for="estrellas">Estrellas:</label>
-	        <input type="number" id="estrellas" name="estrellas" min="1" max="5" required>
-	        <br><br>
+		    <label for="estrellas">Estrellas:</label>
+		    <input type="number" id="estrellas" name="estrellas" min="1" max="5" required>
+		    <br><br>
 
-	        <label for="reseña">Reseña:</label>
-	        <textarea id="reseña" name="reseña" required></textarea>
-	        <br><br>
+		    <label for="resena">Reseña:</label>
+		    <textarea id="resena" name="resena" required></textarea>
+		    <br><br>
 
-	        <button type="submit">Guardar reseña</button>
-	    </form>
+		    <button type="submit">Guardar reseña</button>
+		</form>
+
 
 	</body>
 </html>

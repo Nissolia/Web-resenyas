@@ -23,11 +23,6 @@ public class Usuarios {
     private Collection<? extends GrantedAuthority> perfil;
     private String contrasena;
     
-    @OneToMany(mappedBy = "usuario")
-    private List<Resenas> resenas;
-    // Constructor vacío
-    public Usuarios() {
-    }
 
     // Constructor con parámetros
     public Usuarios(String nombre, Collection<? extends GrantedAuthority> perfil, String contrasena) {

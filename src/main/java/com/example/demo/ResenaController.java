@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +19,6 @@ public class ResenaController {
     private ResenaRepository resenasRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
     private LibroRepository libroRepository;
 
     // Método para mostrar el formulario de reseña
@@ -36,22 +32,16 @@ public class ResenaController {
 
     // Método para guardar la reseña
     @PostMapping("/guardarResena")
-    public String guardarResena(@ModelAttribute Resenas resena, @RequestParam("libroId") Long libroId,
-                                 RedirectAttributes attributes, Authentication authentication) {
+    public String guardarResena(@ModelAttribute Resenas resena, @RequestParam Long libroId,
+                                 RedirectAttributes attributes) {
 
         // Obtener el libro seleccionado por el ID
         Libro libro = libroRepository.findById(libroId)
                 .orElseThrow(() -> new RuntimeException("Libro no encontrado"));
 
-        // Obtener el usuario autenticado (usando el nombre de usuario)
-        String username = authentication.name(); // Obtener el nombre de usuario desde el contexto de autenticación
-        Usuarios usuario = usuarioRepository.findByNombre(username) // Buscar por nombre de usuario
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-        // Asociar la reseña con el libro y el usuario
+        // Asociar la reseña con el libro
         resena.setLibro(libro);
-        resena.setUsuario(usuario);
-        resena.setFecha(LocalDateTime.now());
+        resena.setFecha(LocalDateTime.now()); // Establecer la fecha actual
 
         // Guardar la reseña en la base de datos
         resenasRepository.save(resena);
@@ -60,14 +50,20 @@ public class ResenaController {
         return "redirect:/resenas"; // Redirige a la lista de reseñas
     }
 
-   
-
-    // Mostrar todas las reseñas de un libro
+    // Mostrar todas las reseñas de todos los libros
     @GetMapping("/resenas")
     public String verResenas(Model model) {
-        List<Resenas> resenas = resenasRepository.findAll();
-        model.addAttribute("resenas", resenas); // Agregar las reseñas al modelo
-        return "listaResenas"; // Devolver la vista que muestra todas las reseñas
+        try {
+            List<Resenas> resenas = resenasRepository.findAll();
+            model.addAttribute("resenas", resenas); // Agregar las reseñas al modelo
+            return "listaResenas"; // Devolver la vista que muestra todas las reseñas
+        } catch (Exception e) {
+            // Si ocurre un error, logueamos la excepción y regresamos un error adecuado
+            e.printStackTrace();
+            model.addAttribute("error", "Ocurrió un error al cargar las reseñas.");
+            return "errorPage"; // Opción de redirigir a una página de error.
+        }
     }
+
 
 }

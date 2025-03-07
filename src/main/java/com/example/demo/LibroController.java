@@ -11,12 +11,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
 public class LibroController {
 
+	  @Autowired
+	    private ResenaRepository resenasRepository;
 
+	   
     @Autowired
     private LibroRepository libroRepository;
 
@@ -89,5 +93,9 @@ public class LibroController {
         model.addAttribute("libros", librosFiltrados);
         return "listaLibros"; // Vista que muestra los libros filtrados
     }
+    
+
+  
+
 
 }

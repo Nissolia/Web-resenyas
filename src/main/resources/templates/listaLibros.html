@@ -22,8 +22,7 @@
 		</div>
 	</nav>
 
-	<!-- Enlace para añadir un nuevo libro -->
-	<a class="agregar-libro" th:href="@{/nuevo}">Añadir un nuevo libro</a>
+	
 
 	<!-- Formulario para filtrar libros por género -->
 	<form action="/filtrarLibros" method="get">
@@ -60,6 +59,9 @@
 			</th:block>
 		</tbody>
 	</table>
+	<hr>
+	<!-- Enlace para añadir un nuevo libro -->
+		<a class="agregar-libro" th:href="@{/nuevo}">Añadir un nuevo libro</a>
 </body>
 
 </html>
