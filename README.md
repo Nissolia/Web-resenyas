@@ -41,10 +41,6 @@ El Gestor de Biblioteca Online es una aplicación web diseñada para la gestión
 - **PHP con Laravel** para la lógica del servidor.
 - **MySQL** para la gestión de la base de datos.
 
-### Otras Herramientas
-- **Docker** para contenedorización del entorno de desarrollo.
-- **Render** para la implementación y despliegue en la nube.
-
 ## Base de Datos
 
 ### Tablas Principales
